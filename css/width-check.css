@@ -1,0 +1,30 @@
+.wrapper {
+  max-width: 1080px;
+  margin: auto;
+  background-color: rgb(164, 213, 213);
+  padding: 50px;
+}
+.min-item {
+  min-width: 400px;
+  background-color: rgb(177, 217, 113);
+}
+.max-item {
+  max-width: 500px;
+  background-color: burlywood;
+}
+.none-item {
+  background-color: rgb(161, 89, 100);
+  width: 600px;
+}
+.min-item,
+.max-item,
+.none-item {
+  height: 200px;
+  margin: auto;
+  box-sizing: border-box;
+  padding-top: 50px;
+  padding-left: 50px;
+  border-radius: 25px;
+  font-size: 20px;
+  font-weight: bold;
+}
