@@ -15,8 +15,7 @@
 const divs = document.querySelectorAll("div");
 divs.forEach((div) => {
   function updateWidth() {
-    div.querySelector("p").textContent =
-      "Current div width: " + div.offsetWidth;
+    div.querySelector("p").textContent = "현재 width: " + div.offsetWidth;
   }
 
   window.addEventListener("resize", () => {
