@@ -30,7 +30,6 @@ h1 {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  font-size: 50px;
   padding-right: 27px;
 }
 
@@ -38,6 +37,12 @@ h1 {
   height: 300px;
   display: flex;
   flex-direction: column;
+}
+
+.text-area {
+  font-size: 50px;
+}
+.text-area {
 }
 
 .button-area {
