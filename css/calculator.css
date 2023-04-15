@@ -5,6 +5,12 @@
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
     Helvetica, Arial, "Lucida Grande", sans-serif;
 }
+body {
+  background-color: #191818;
+}
+h1 {
+  color: white;
+}
 
 .calculator {
   display: flex;
@@ -21,6 +27,7 @@
   height: 200px;
   color: white;
   display: flex;
+  flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
   font-size: 50px;
