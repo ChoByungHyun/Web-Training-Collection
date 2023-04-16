@@ -7,8 +7,6 @@ let equalBtn = document.querySelector("#equal");
 
 let lastInput = ""; // 마지막 입력된 문자
 let expressionList = []; // 입력된 수식들을 담을 배열
-let selectedOperator = null;
-let currentSelectedBtn = null;
 
 // 초기화 함수에서 색상 초기화
 function resetColors() {
@@ -17,8 +15,6 @@ function resetColors() {
     btn.style.color = "white";
     btn.style.backgroundColor = "#f69906";
   });
-
-  currentSelectedBtn = null;
 }
 numBtns.forEach(function (btn) {
   btn.addEventListener("click", function () {
@@ -44,7 +40,6 @@ numBtns.forEach(function (btn) {
     btnClickCheck = false;
   });
 });
-
 equalBtn.addEventListener("click", () => {
   // textArea에 있는 수식을 가져옴
   // textlistarea에 있는거라 textarea의 값과 연산하자.
@@ -57,9 +52,12 @@ equalBtn.addEventListener("click", () => {
 
   // "÷"를 "/"로 변환
   expression = expression.replace(/÷/g, "/");
-  // 수식을 분리하여 계산
-  var result = eval(expression);
-  console.log(expression);
+
+  // 새로운 Function 객체 생성
+  var calculate = new Function("return " + expression);
+
+  // 수식을 계산
+  var result = calculate();
 
   // 출력
   textArea.textContent = result;
@@ -69,6 +67,31 @@ equalBtn.addEventListener("click", () => {
   expressionList = [];
   btnClickCheck = false;
 });
+
+// equalBtn.addEventListener("click", () => {
+//   // textArea에 있는 수식을 가져옴
+//   // textlistarea에 있는거라 textarea의 값과 연산하자.
+//   var expression = textListArea.textContent + textArea.textContent;
+//   textListArea.textContent = expression + "=";
+
+//   expression = expression.split(" ").join("");
+//   // "x"를 "*"로 변환
+//   expression = expression.replace(/x/g, "*");
+
+//   // "÷"를 "/"로 변환
+//   expression = expression.replace(/÷/g, "/");
+//   // 수식을 분리하여 계산
+//   var result = eval(expression);
+//   console.log(expression);
+
+//   // 출력
+//   textArea.textContent = result;
+
+//   lastInput = equalBtn.textContent;
+//   resetColors();
+//   expressionList = [];
+//   btnClickCheck = false;
+// });
 
 operatorBtns.forEach(function (btn) {
   btn.addEventListener("click", function () {
