@@ -76,33 +76,52 @@ operatorBtns.forEach(function (btn) {
       return;
     }
 
-    if (textArea.textContent === "0") {
-      return;
-    }
-    if (lastInput !== "" && isNaN(lastInput)) {
+    // if (textArea.textContent === "0") {
+    //   return;
+    // }
+    if (lastInput !== this.textContent) {
+      // 클릭한 버튼 색상 변경
+      resetColors();
+      btn.style.backgroundColor = "white";
+      btn.style.color = "#f69906";
       // 마지막 입력된 문자가 연산자인 경우
-      textListArea.textContent = textListArea.textContent.slice(0, -1); // 마지막 연산자 지우기
       updateTextList();
     }
-    resetColors();
-    // 클릭한 버튼 색상 변경
-    btn.style.backgroundColor = "white";
-    btn.style.color = "#f69906";
-
     // 현재 선택된 버튼 저장
-    currentSelectedBtn = btn;
 
     lastInput = this.textContent;
+
+    const lastTextCheck = textListArea.textContent.slice(-1);
+    if (
+      lastTextCheck == "÷" ||
+      lastTextCheck == "x" ||
+      lastTextCheck == "+" ||
+      lastTextCheck == "-"
+    ) {
+      // console.log("test");
+      // console.log(lastTextCheck);
+
+      textListArea.textContent = textListArea.textContent.slice(0, -1); // 마지막 연산자 지우기
+    }
+    if (textArea.textContent === "0") {
+      console.log(lastInput);
+      textListArea.textContent = textListArea.textContent + lastInput;
+      // expressionList.push(lastInput);
+      return;
+    }
+    if (textArea.textContent === "" && textListArea.textContent === "") {
+      return;
+    }
     expressionList.push(textArea.textContent + this.textContent);
     textListArea.textContent = expressionList.join("");
-    textArea.textContent = "";
+    textArea.textContent = "0";
   });
 });
 
 extraBtns.forEach(function (btn) {
   btn.addEventListener("click", function () {
     if (this.textContent == "AC") {
-      textArea.textContent = 0;
+      textArea.textContent = "";
       lastInput = ""; // 초기화
       expressionList = []; // 수식 리스트 초기화
       textListArea.textContent = "";
