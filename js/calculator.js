@@ -13,6 +13,7 @@ let currentSelectedBtn = null;
 // 초기화 함수에서 색상 초기화
 function resetColors() {
   operatorBtns.forEach(function (btn) {
+    console.log("test");
     btn.style.color = "white";
     btn.style.backgroundColor = "#f69906";
   });
@@ -21,7 +22,7 @@ function resetColors() {
 }
 numBtns.forEach(function (btn) {
   btn.addEventListener("click", function () {
-    if (textArea.textContent == "0") {
+    if (textArea.textContent == "") {
       textArea.textContent = "";
       if (this.textContent === ".") {
         textArea.textContent = "0.";
@@ -32,13 +33,15 @@ numBtns.forEach(function (btn) {
       return;
     }
     if (lastInput === "=") {
-      textArea.textContent = "";
-      textListArea.textContent = "";
-      // expressionList = [];
+      if (this.textContent !== ".") {
+        textArea.textContent = "";
+        textListArea.textContent = "";
+      }
     }
     resetColors();
     lastInput = this.textContent;
     textArea.textContent += this.textContent;
+    btnClickCheck = false;
   });
 });
 
@@ -58,16 +61,13 @@ equalBtn.addEventListener("click", () => {
   var result = eval(expression);
   console.log(expression);
 
-  // push to expressionList
-  // expressionList.push(expression + " = ");
-
   // 출력
   textArea.textContent = result;
 
   lastInput = equalBtn.textContent;
   resetColors();
-  updateTextList();
   expressionList = [];
+  btnClickCheck = false;
 });
 
 operatorBtns.forEach(function (btn) {
@@ -76,18 +76,11 @@ operatorBtns.forEach(function (btn) {
       return;
     }
 
-    // if (textArea.textContent === "0") {
-    //   return;
-    // }
     if (lastInput !== this.textContent) {
-      // 클릭한 버튼 색상 변경
       resetColors();
       btn.style.backgroundColor = "white";
       btn.style.color = "#f69906";
-      // 마지막 입력된 문자가 연산자인 경우
-      updateTextList();
     }
-    // 현재 선택된 버튼 저장
 
     lastInput = this.textContent;
 
@@ -103,7 +96,7 @@ operatorBtns.forEach(function (btn) {
 
       textListArea.textContent = textListArea.textContent.slice(0, -1); // 마지막 연산자 지우기
     }
-    if (textArea.textContent === "0") {
+    if (textArea.textContent === "") {
       console.log(lastInput);
       textListArea.textContent = textListArea.textContent + lastInput;
       // expressionList.push(lastInput);
@@ -114,7 +107,7 @@ operatorBtns.forEach(function (btn) {
     }
     expressionList.push(textArea.textContent + this.textContent);
     textListArea.textContent = expressionList.join("");
-    textArea.textContent = "0";
+    textArea.textContent = "";
   });
 });
 
@@ -125,6 +118,7 @@ extraBtns.forEach(function (btn) {
       lastInput = ""; // 초기화
       expressionList = []; // 수식 리스트 초기화
       textListArea.textContent = "";
+      btnClickCheck = false;
 
       resetColors();
       return;
@@ -147,10 +141,29 @@ extraBtns.forEach(function (btn) {
   });
 });
 
-function updateTextList() {
-  // 추가된 표현식을 표시
-  // expressionList.forEach((exp) => {
-  //   textListArea.textContent = exp;
-  //   // textListArea.appendChild(listItem)
-  // });
-}
+let btnClickCheck = false;
+operatorBtns.forEach(function (btn) {
+  btn.addEventListener("mouseover", function () {
+    if (btnClickCheck === true) {
+      return;
+    }
+    btn.style.backgroundColor = "white";
+    btn.style.color = "#f69906";
+  });
+  btn.addEventListener("click", function () {
+    if (this.textContent === "=") {
+      return;
+    }
+    btnClickCheck = true;
+    btn.style.backgroundColor = "white";
+    btn.style.color = "#f69906";
+  });
+
+  btn.addEventListener("mouseout", function () {
+    if (btnClickCheck === true) {
+      return;
+    }
+    btn.style.backgroundColor = "#f69906";
+    btn.style.color = "white";
+  });
+});

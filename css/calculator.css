@@ -6,10 +6,14 @@
     Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 body {
-  background-color: #191818;
+  background-color: rgb(15, 14, 14);
+  height: 100vh;
 }
 h1 {
   color: white;
+  text-align: center;
+  padding-top: 50px;
+  box-sizing: border-box;
 }
 
 .calculator {
@@ -20,7 +24,7 @@ h1 {
   background-color: black;
   padding: 10px;
   border-radius: 40px;
-  margin: 100px auto;
+  margin: 50px auto;
 }
 
 #calculator-text {
@@ -31,6 +35,7 @@ h1 {
   justify-content: flex-end;
   align-items: flex-end;
   padding-right: 27px;
+  padding-left: 27px;
 }
 
 #calculator-area {
@@ -40,9 +45,14 @@ h1 {
 }
 
 .text-area {
-  font-size: 50px;
+  font-size: 38px;
+  word-break: break-all;
+  height: 40px;
+  margin-bottom: 10px;
 }
-.text-area {
+.text-list-area {
+  word-break: break-all;
+  color: #313131;
 }
 
 .button-area {
