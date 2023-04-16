@@ -1,19 +1,19 @@
 .wrapper {
   max-width: 1080px;
   margin: auto;
-  background-color: rgb(164, 213, 213);
+  background-color: #393646;
   padding: 50px;
 }
 .min-item {
   min-width: 400px;
-  background-color: rgb(177, 217, 113);
+  background-color: #4f4557;
 }
 .max-item {
   max-width: 500px;
-  background-color: burlywood;
+  background-color: #6d5d6e;
 }
 .none-item {
-  background-color: rgb(161, 89, 100);
+  background-color: #f4eee0;
   width: 600px;
 }
 .min-item,

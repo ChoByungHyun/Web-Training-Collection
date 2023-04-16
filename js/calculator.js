@@ -40,6 +40,14 @@ numBtns.forEach(function (btn) {
     btnClickCheck = false;
   });
 });
+
+document.addEventListener("keydown", function (event) {
+  const key = event.key;
+  if (/[0-9]/.test(key)) {
+    // 숫자 키인 경우
+    textArea.textContent += key;
+  }
+});
 equalBtn.addEventListener("click", () => {
   // textArea에 있는 수식을 가져옴
   // textlistarea에 있는거라 textarea의 값과 연산하자.
@@ -68,31 +76,6 @@ equalBtn.addEventListener("click", () => {
   btnClickCheck = false;
 });
 
-// equalBtn.addEventListener("click", () => {
-//   // textArea에 있는 수식을 가져옴
-//   // textlistarea에 있는거라 textarea의 값과 연산하자.
-//   var expression = textListArea.textContent + textArea.textContent;
-//   textListArea.textContent = expression + "=";
-
-//   expression = expression.split(" ").join("");
-//   // "x"를 "*"로 변환
-//   expression = expression.replace(/x/g, "*");
-
-//   // "÷"를 "/"로 변환
-//   expression = expression.replace(/÷/g, "/");
-//   // 수식을 분리하여 계산
-//   var result = eval(expression);
-//   console.log(expression);
-
-//   // 출력
-//   textArea.textContent = result;
-
-//   lastInput = equalBtn.textContent;
-//   resetColors();
-//   expressionList = [];
-//   btnClickCheck = false;
-// });
-
 operatorBtns.forEach(function (btn) {
   btn.addEventListener("click", function () {
     if (this.textContent === "=") {
@@ -114,10 +97,10 @@ operatorBtns.forEach(function (btn) {
       lastTextCheck == "+" ||
       lastTextCheck == "-"
     ) {
-      // console.log("test");
-      // console.log(lastTextCheck);
-
       textListArea.textContent = textListArea.textContent.slice(0, -1); // 마지막 연산자 지우기
+    }
+    if (textArea.textContent === "" && textListArea.textContent === "") {
+      return;
     }
     if (textArea.textContent === "") {
       console.log(lastInput);
@@ -125,9 +108,7 @@ operatorBtns.forEach(function (btn) {
       // expressionList.push(lastInput);
       return;
     }
-    if (textArea.textContent === "" && textListArea.textContent === "") {
-      return;
-    }
+
     expressionList.push(textArea.textContent + this.textContent);
     textListArea.textContent = expressionList.join("");
     textArea.textContent = "";
@@ -172,6 +153,7 @@ operatorBtns.forEach(function (btn) {
     }
     btn.style.backgroundColor = "white";
     btn.style.color = "#f69906";
+    btn.style.transition = "all 0.3s";
   });
   btn.addEventListener("click", function () {
     if (this.textContent === "=") {

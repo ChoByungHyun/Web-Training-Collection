@@ -47,11 +47,12 @@ h1 {
 .text-area {
   font-size: 38px;
   word-break: break-all;
-  height: 40px;
+  /* height: 40px; */
   margin-bottom: 10px;
 }
 .text-list-area {
   word-break: break-all;
+  height: 20px;
   color: #313131;
 }
 
@@ -83,6 +84,7 @@ button:hover {
 
 .extra-operator:hover {
   background-color: #ececec;
+  transition: all 0.3s;
 }
 .operator {
   font-size: 35px;
@@ -101,6 +103,7 @@ button:hover {
 
 .num:hover {
   background-color: #868686;
+  transition: all 0.3s;
 }
 
 #zero {

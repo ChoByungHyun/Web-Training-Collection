@@ -1,5 +1,5 @@
-const checkedColor = "red";
-const nonecheckedColor = "antiquewhite";
+const checkedColor = "#393646";
+const nonecheckedColor = "#F4EEE0";
 
 const btn_growX1 = document.querySelector(".X-grow-1");
 const btn_growX0 = document.querySelector(".X-grow-0");
