@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메모장</title>
+
+    <link rel="stylesheet" href="../../css/notepad.css" />
+  </head>
+  <body>
+    <div class="container">
+      <main class="diary-main">
+        <h2 class="heart">2023.03.15의 비밀일기</h2>
+        <form action="">
+          <label class="a11y-hidden" for="diary-title">제목</label>
+          <input
+            class="input-style"
+            id="diary-title"
+            type="text"
+            placeholder="오늘 뭐했니?"
+          />
+          <label class="a11y-hidden" for="diary-title">내용</label>
+          <textarea
+            class="diary-textarea"
+            placeholder="오늘의 비밀은?"
+          ></textarea>
+          <button class="black-btn" type="button">작성하기</button>
+        </form>
+      </main>
+      <section>
+        <h2 class="a11y-hidden">일기 목록</h2>
+        <ul>
+          <li>
+            <article class="diary-article">
+              <h3 class="article-title">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+                inventore animi?
+              </h3>
+              <time class="article-time" datetime="2023-03-15"
+                >2023-03-15.WED</time
+              >
+              <p class="article-content">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet
+                iure optio dolore animi non laboriosam expedita? Quos
+                exercitationem, at dolore, a asperiores id esse tenetur ullam
+                non hic ex reprehenderit!
+              </p>
+
+              <div class="button-group">
+                <button type="button">
+                  <img src="./image/icon-edit.svg" alt="수정" />
+                </button>
+                <span></span>
+                <button type="button">
+                  <img src="./image/icon-delete.svg" alt="삭제" />
+                </button>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <script src="../../js/notepad.js"></script>
+  </body>
+</html>

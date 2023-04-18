@@ -11,7 +11,6 @@ let expressionList = []; // 입력된 수식들을 담을 배열
 // 초기화 함수에서 색상 초기화
 function resetColors() {
   operatorBtns.forEach(function (btn) {
-    console.log("test");
     btn.style.color = "white";
     btn.style.backgroundColor = "#f69906";
   });
@@ -38,6 +37,7 @@ numBtns.forEach(function (btn) {
     lastInput = this.textContent;
     textArea.textContent += this.textContent;
     btnClickCheck = false;
+    equalCheck = false;
   });
 });
 
@@ -48,9 +48,16 @@ document.addEventListener("keydown", function (event) {
     textArea.textContent += key;
   }
 });
+let equalCheck = false;
 equalBtn.addEventListener("click", () => {
-  // textArea에 있는 수식을 가져옴
-  // textlistarea에 있는거라 textarea의 값과 연산하자.
+  if (textListArea.textContent === "") {
+    return;
+  }
+  if (equalCheck) {
+    return;
+  }
+
+  // textlistarea에 있는거랑 textarea의 값과 연산하자.
   var expression = textListArea.textContent + textArea.textContent;
   textListArea.textContent = expression + "=";
 
@@ -74,6 +81,7 @@ equalBtn.addEventListener("click", () => {
   resetColors();
   expressionList = [];
   btnClickCheck = false;
+  equalCheck = true;
 });
 
 operatorBtns.forEach(function (btn) {
@@ -92,25 +100,25 @@ operatorBtns.forEach(function (btn) {
 
     const lastTextCheck = textListArea.textContent.slice(-1);
     if (
-      lastTextCheck == "÷" ||
-      lastTextCheck == "x" ||
-      lastTextCheck == "+" ||
-      lastTextCheck == "-"
+      lastTextCheck === "÷" ||
+      lastTextCheck === "x" ||
+      lastTextCheck === "+" ||
+      lastTextCheck === "-"
     ) {
       textListArea.textContent = textListArea.textContent.slice(0, -1); // 마지막 연산자 지우기
     }
+
     if (textArea.textContent === "" && textListArea.textContent === "") {
       return;
     }
     if (textArea.textContent === "") {
       console.log(lastInput);
       textListArea.textContent = textListArea.textContent + lastInput;
-      // expressionList.push(lastInput);
       return;
     }
 
     expressionList.push(textArea.textContent + this.textContent);
-    textListArea.textContent = expressionList.join("");
+    textListArea.textContent = expressionList.join("").trim();
     textArea.textContent = "";
   });
 });
@@ -123,6 +131,10 @@ extraBtns.forEach(function (btn) {
       expressionList = []; // 수식 리스트 초기화
       textListArea.textContent = "";
       btnClickCheck = false;
+      equalCheck = false;
+      if (textArea.textContent === "") {
+        // textArea.innerHTML = "&nbsp;";
+      }
 
       resetColors();
       return;
