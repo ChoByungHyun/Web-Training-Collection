@@ -4,26 +4,37 @@ const btnSubmit = document.querySelector(".black-btn");
 const listDiaryTitle = document.querySelector(".article-title");
 const listDiaryContent = document.querySelector(".article-content");
 
+
+let allMemo = JSON.parse(localStorage.getItem("allMemo"));
+allMemo = allMemo ?? [];
+render();
+
 btnSubmit.addEventListener("click", () => {
   listDiaryTitle.textContent = diaryTitle.value;
   listDiaryContent.textContent = diaryContent.value;
 
-  let list1 = listDiaryTitle.textContent;
-  let list2 = listDiaryContent.textContent;
-  let allMemo = [list1, list2];
-  localStorage.setItem("리스트", JSON.stringify(allMemo));
-  console.log(JSON.parse(localStorage.getItem("리스트")));
+  let title = listDiaryTitle.textContent;
+  let content = listDiaryContent.textContent;
+  allMemo.push({ title, content, len: allMemo.length });
+
+  localStorage.setItem("allMemo", JSON.stringify(allMemo));
+  render();
 });
 
 function render() {
-  const display = document.getElementById("display");
+  const display = document.querySelector(".diary-list");
   display.innerHTML = "";
 
   for (const item of allMemo) {
+    const saveActicle = document.createElement("article");
     const saveTitle = document.createElement("h3");
     const saveContent = document.createElement("p");
     const saveId = document.createElement("p");
     const deleteMemoBtn = document.createElement("button");
+
+    saveTitle.setAttribute("class", "article-title");
+    saveContent.setAttribute("class", "article-content");
+
 
     saveTitle.textContent = item.title;
     saveContent.textContent = item.content;
