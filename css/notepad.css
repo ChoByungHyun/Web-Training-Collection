@@ -1,5 +1,5 @@
 .heart {
-  background: url(../image/heart.svg) no-repeat 0 center / 1.2em;
+  background: url(../assets/img_notepad/heart.svg) no-repeat 0 center / 1.2em;
   padding-left: 1.4em;
 }
 .diary-textarea {
@@ -50,12 +50,14 @@ h3 {
 .diary-article::before {
   top: -20px;
   left: 30px;
-  background: #fffaf0 url(../image/quote-start.svg) no-repeat 0 0 / contain;
+  background: #fffaf0 url(../assets/img_notepad/quote-start.svg) no-repeat 0 0 /
+    contain;
 }
 .diary-article::after {
   bottom: -20px;
   right: 30px;
-  background: #fffaf0 url(../image/quote-end.svg) no-repeat 0 0 / contain;
+  background: #fffaf0 url(../assets/img_notepad/quote-end.svg) no-repeat 0 0 /
+    contain;
 }
 .article-title {
   color: #29363d;
@@ -120,6 +122,7 @@ h3 {
 } */
 .container section {
   padding-top: 94px;
+  width: 100%;
 }
 
 .container section ul li {
@@ -144,7 +147,7 @@ h3 {
 .button-group button {
   width: 32px;
   height: 32px;
-  background: none;
+  /* background: none; */
   padding: 0;
   opacity: 0.6;
   transition: opacity 0.3s;
@@ -220,6 +223,16 @@ body {
 }
 button {
   border: 0;
+}
+.btn-edit {
+  width: 100%;
+  height: 100%;
+  background: url(../../assets/img_notepad/icon-edit.svg);
+}
+.btn-delete {
+  width: 100%;
+  height: 100%;
+  background: url(../../assets/img_notepad/icon-delete.svg);
 }
 /* form */
 .label-style,
@@ -325,4 +338,11 @@ header {
     stroke-width: 2px;
     transform: scale(3);
   }
+}
+.article-content-div {
+  display: none;
+}
+
+.show-content {
+  display: block;
 }

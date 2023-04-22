@@ -24,6 +24,13 @@ numBtns.forEach(function (btn) {
         return;
       }
     }
+    if (textArea.textContent === "0") {
+      textArea.textContent = "";
+      if (this.textContent === "0") {
+        return;
+      }
+    }
+
     if (this.textContent === "." && textArea.textContent.includes(".")) {
       return;
     }
@@ -43,39 +50,70 @@ numBtns.forEach(function (btn) {
 
 document.addEventListener("keydown", function (event) {
   const key = event.key;
-  if (/[0-9]/.test(key)) {
+  if (/^[0-9]$/.test(key)) {
     // 숫자 키인 경우
     textArea.textContent += key;
   }
 });
 let equalCheck = false;
+let lastNumCheck;
 equalBtn.addEventListener("click", () => {
+  console.log(lastoperatorCheck);
   if (textListArea.textContent === "") {
     return;
   }
-  if (equalCheck) {
+  if (
+    lastInput === "÷" ||
+    lastInput === "x" ||
+    lastInput === "+" ||
+    lastInput === "-"
+  ) {
     return;
   }
+  if (equalCheck) {
+    let expression =
+      textListArea.textContent.slice(0, -1) + lastoperatorCheck + lastNumCheck;
 
-  // textlistarea에 있는거랑 textarea의 값과 연산하자.
-  var expression = textListArea.textContent + textArea.textContent;
-  textListArea.textContent = expression + "=";
+    textListArea.textContent = expression + "=";
 
-  expression = expression.split(" ").join("");
-  // "x"를 "*"로 변환
-  expression = expression.replace(/x/g, "*");
+    expression = expression.split(" ").join("");
+    // "x"를 "*"로 변환
+    expression = expression.replace(/x/g, "*");
 
-  // "÷"를 "/"로 변환
-  expression = expression.replace(/÷/g, "/");
+    // "÷"를 "/"로 변환
+    expression = expression.replace(/÷/g, "/");
 
-  // 새로운 Function 객체 생성
-  var calculate = new Function("return " + expression);
+    // 새로운 Function 객체 생성
+    let calculate = new Function("return " + expression);
 
-  // 수식을 계산
-  var result = calculate();
+    // 수식을 계산
+    let result = calculate();
 
-  // 출력
-  textArea.textContent = result;
+    // 출력
+    textArea.textContent = result;
+  } else {
+    lastNumCheck = textArea.textContent;
+
+    // textlistarea에 있는거랑 textarea의 값과 연산하자.
+    let expression = textListArea.textContent + textArea.textContent;
+    textListArea.textContent = expression + "=";
+
+    expression = expression.split(" ").join("");
+    // "x"를 "*"로 변환
+    expression = expression.replace(/x/g, "*");
+
+    // "÷"를 "/"로 변환
+    expression = expression.replace(/÷/g, "/");
+
+    // 새로운 Function 객체 생성
+    let calculate = new Function("return " + expression);
+
+    // 수식을 계산
+    let result = calculate();
+
+    // 출력
+    textArea.textContent = result;
+  }
 
   lastInput = equalBtn.textContent;
   resetColors();
@@ -84,6 +122,7 @@ equalBtn.addEventListener("click", () => {
   equalCheck = true;
 });
 
+let lastoperatorCheck;
 operatorBtns.forEach(function (btn) {
   btn.addEventListener("click", function () {
     if (this.textContent === "=") {
@@ -99,6 +138,7 @@ operatorBtns.forEach(function (btn) {
     lastInput = this.textContent;
 
     const lastTextCheck = textListArea.textContent.slice(-1);
+
     if (
       lastTextCheck === "÷" ||
       lastTextCheck === "x" ||
@@ -117,6 +157,8 @@ operatorBtns.forEach(function (btn) {
       return;
     }
 
+    lastoperatorCheck = lastInput;
+    console.log(lastoperatorCheck);
     expressionList.push(textArea.textContent + this.textContent);
     textListArea.textContent = expressionList.join("").trim();
     textArea.textContent = "";
