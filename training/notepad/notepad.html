@@ -6,28 +6,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>메모장</title>
 
-    <link rel="stylesheet" href="../../css/notepad.css" />
+    <link rel="stylesheet" href="../../css/notepad/canvas-styles.css" />
+    <link rel="stylesheet" href="../../css/notepad/notepad.css" />
   </head>
   <body>
     <div class="container">
       <main class="diary-main">
         <h2 class="heart"></h2>
-
-        <form action="">
+        <button class="new-diary">접기</button>
+        <form action="" class="input-form">
           <label class="a11y-hidden" for="diary-title">제목</label>
           <input
             class="input-style"
             id="diary-title"
             type="text"
-            placeholder="오늘 뭐했니?"
+            placeholder="제목"
           />
           <label class="a11y-hidden" for="diary-title">내용</label>
-          <textarea
-            class="diary-textarea"
-            placeholder="오늘의 비밀은?"
-          ></textarea>
+          <textarea class="diary-textarea" placeholder="내용"></textarea>
           <button class="black-btn" type="button">작성하기</button>
         </form>
+        <div class="canvas-container">
+          <h3>그림 메모도 해보세요!</h3>
+          <canvas id="jsCanvas" class="canvas"></canvas>
+          <div class="controls">
+            <div class="controls__range">
+              <input
+                type="range"
+                id="jsRange"
+                min="0.1"
+                max="5.0"
+                value="2.5"
+                step="0.1"
+              />
+            </div>
+            <div class="controls__btns">
+              <button id="jsMode">Fill</button>
+              <button id="jsSave">Save</button>
+              <button id="jsDelete">Clear</button>
+            </div>
+            <div class="controls__colors" id="jsColors">
+              <div
+                class="controls__color jsColor"
+                style="background-color: black"
+              ></div>
+              <div
+                class="controls__color jsColor"
+                style="background-color: white"
+              ></div>
+              <div
+                class="controls__color jsColor"
+                style="background-color: red"
+              ></div>
+              <div
+                class="controls__color jsColor"
+                style="background-color: orange"
+              ></div>
+              <div
+                class="controls__color jsColor"
+                style="background-color: yellow"
+              ></div>
+              <div
+                class="controls__color jsColor"
+                style="background-color: green"
+              ></div>
+              <div
+                class="controls__color jsColor"
+                style="background-color: blue"
+              ></div>
+              <div
+                class="controls__color jsColor"
+                style="background-color: navy"
+              ></div>
+              <div
+                class="controls__color jsColor"
+                style="background-color: purple"
+              ></div>
+            </div>
+          </div>
+        </div>
       </main>
       <section class="diary-list">
         <h2 class="a11y-hidden">일기 목록</h2>
@@ -41,6 +98,9 @@
         </ul>
       </section>
     </div>
-    <script src="../../js/notepad.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="../../js/notepad/notepad.js"></script>
+    <!-- <script src="../../js/notepad/canvas.js"></script> -->
   </body>
 </html>
