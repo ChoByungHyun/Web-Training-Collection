@@ -48,6 +48,11 @@ h1 {
   font-size: 38px;
   word-break: break-all;
   min-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
   /* margin-bottom: 5px; */
 }
 .text-list-area {

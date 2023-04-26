@@ -25,10 +25,14 @@ numBtns.forEach(function (btn) {
       }
     }
     if (textArea.textContent === "0") {
-      textArea.textContent = "";
       if (this.textContent === "0") {
         return;
       }
+      if (this.textContent === ".") {
+        textArea.textContent = "0.";
+        return;
+      }
+      textArea.textContent = "";
     }
 
     if (this.textContent === "." && textArea.textContent.includes(".")) {
@@ -43,10 +47,19 @@ numBtns.forEach(function (btn) {
     resetColors();
     lastInput = this.textContent;
     textArea.textContent += this.textContent;
+    textArea.textContent = comma(uncomma(textArea.textContent));
     btnClickCheck = false;
     equalCheck = false;
   });
 });
+function comma(str) {
+  return str.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  //  /(\d)(?=(?!\d|\.)(\d{3})+$)/g; //소수점잘됨 콤마 안됨
+  // /\B(?=(\d{3})+(?!\d))/g; //콤마 잘됨
+}
+function uncomma(str) {
+  return str.replace(/[^\d.-/*+x÷]+/g, "");
+}
 
 document.addEventListener("keydown", function (event) {
   const key = event.key;
@@ -72,7 +85,7 @@ equalBtn.addEventListener("click", () => {
   }
   if (equalCheck) {
     let expression =
-      textListArea.textContent.slice(0, -1) + lastoperatorCheck + lastNumCheck;
+      uncomma(textArea.textContent) + lastoperatorCheck + lastNumCheck;
 
     textListArea.textContent = expression + "=";
 
@@ -91,11 +104,14 @@ equalBtn.addEventListener("click", () => {
 
     // 출력
     textArea.textContent = result;
+    comma(textArea.textContent);
   } else {
     lastNumCheck = textArea.textContent;
 
     // textlistarea에 있는거랑 textarea의 값과 연산하자.
-    let expression = textListArea.textContent + textArea.textContent;
+    let expression =
+      uncomma(textListArea.textContent) + uncomma(textArea.textContent);
+    console.log(expression);
     textListArea.textContent = expression + "=";
 
     expression = expression.split(" ").join("");
@@ -113,6 +129,7 @@ equalBtn.addEventListener("click", () => {
 
     // 출력
     textArea.textContent = result;
+    textArea.textContent = comma(textArea.textContent);
   }
 
   lastInput = equalBtn.textContent;
@@ -181,12 +198,22 @@ extraBtns.forEach(function (btn) {
       resetColors();
       return;
     }
+    if (textArea.textContent === "") {
+      return;
+    }
     if (this.textContent == "+/-") {
-      textArea.textContent = textArea.textContent * -1;
+      textArea.textContent = uncomma(textArea.textContent) * -1;
+      textArea.textContent = comma(textArea.textContent);
       return;
     }
     if (this.textContent == "%") {
-      textArea.textContent = textArea.textContent * 0.01;
+      textArea.textContent = uncomma(textArea.textContent) * 0.01;
+      if (
+        parseInt(textArea.textContent) > 0 &&
+        parseInt(textArea.textContent) > 1000
+      ) {
+        textArea.textContent = comma(textArea.textContent);
+      }
       return;
     }
     if (lastInput !== "" && isNaN(lastInput)) {
