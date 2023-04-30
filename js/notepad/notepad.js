@@ -1,3 +1,6 @@
+// import setPaint from "./canvas.js";
+console.log(1);
+
 const diaryTitle = document.querySelector(".input-style");
 const diaryContent = document.querySelector(".diary-textarea");
 const btnSubmit = document.querySelector(".black-btn");
@@ -8,10 +11,12 @@ const inputForm = document.querySelector(".input-form");
 const newDiary = document.querySelector(".new-diary");
 const btnOnOff = document.createElement("button");
 
+let saveActicle = document.querySelector(".date-List");
+
 const imgContainer = document.createElement("div");
 
 // Swal.fire(
-//   "많은 잔버그가 존재합니다.\n 최초 작성은 메모장으로 부탁드려요.\n 감정 컨트롤 부탁드려요."
+//   "많은 잔버그가 존재합니다.\n 최초 작성은 메모장으로 부탁드려요."
 // );
 
 let currdate;
@@ -153,6 +158,7 @@ function render() {
       deleteMemoBtn.setAttribute("id", item.len);
       deleteMemoBtn.setAttribute("class", "btn-delete");
       deleteMemoBtn.setAttribute("onclick", "remove()");
+      // deleteMemoBtn.addEventListener("click", remove);
 
       dateList.appendChild(listLi);
       listLi.appendChild(saveActicle);
@@ -163,7 +169,7 @@ function render() {
       saveContentDiv.appendChild(saveContent);
       saveContentDiv.appendChild(btnGroup);
 
-      dateList.appendChild(imgContainer); //canvas
+      saveContent.appendChild(imgContainer); //canvas
 
       btnGroup.appendChild(deleteMemoBtn);
 

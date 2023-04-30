@@ -1,3 +1,5 @@
+// console.log(2);
+
 // const canvas = document.getElementById("jsCanvas");
 // const ctx = canvas.getContext("2d");
 // const colors = document.getElementsByClassName("jsColor");
@@ -123,7 +125,6 @@
 //     test.src = item.image;
 //     test.setAttribute("id", item.len);
 //     imgContainer.appendChild(test);
-//     console.log("?");
 //   }
 // }
 
@@ -157,40 +158,4 @@
 //   ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 // });
 
-// // export default { setPaint };
-
-// // let paintByDate = {};
-
-// // function render() {
-// //   let today = new Date();
-// //   let year = today.getFullYear();
-// //   let month = today.getMonth() + 1;
-// //   let date = today.getDate();
-// //   currdate = year + "." + month + "." + date;
-// //   // currdate = "2023.4.30";
-
-// //   // 빈 객체 생성
-// //   let diaryByDate = {};
-
-// //   // allMemo를 순회하면서 일기를 날짜별로 분류하여 diaryByDate에 저장
-// //   for (const item of allPaint) {
-// //     // 현재 일기의 날짜를 date변수에 저장
-// //     let date = item.currdate;
-// //     // diaryByDate에 date를 key로 가지는 객체가 없으면 빈 객체로 초기화
-// //     if (!paintByDate[date]) {
-// //       paintByDate[date] = {};
-// //     }
-// //     // 해당 날짜의 일기 목록 배열이 없으면 빈 배열로 초기화
-// //     if (!paintByDate[date].list) {
-// //       paintByDate[date].list = [];
-// //     }
-// //     // 현재 일기를 해당 날짜의 일기 목록에 push
-// //     paintByDate[date].list.push(item);
-// //   }
-
-// //   // diaryByDate 객체를 순회하면서 날짜별로 일기를 표시
-// //   for (const [date] of Object.entries(diaryByDate)) {
-// //     for (const item of diary.list) {
-// //     }
-// //   }
-// // }
+// export default { setPaint };
