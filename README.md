@@ -7,7 +7,10 @@
 
 계산기 url - https://chobyunghyun.github.io/Web-Training-Collection/training/calculator/calculator.html
 
-계산기 수정사항 체크리스트.
+<details>
+<summary>계산기 수정사항 체크리스트.</summary>
+<div markdown="1">
+
 - [ ] 소수점 이하의 숫자 입력 시에는 콤마가 없는게 나을 것 같습니다.
 - [ ] 아까 설명해주시면서 인지하셨던 부분 '-' Minus 연산자가 이상합니다
 ( 5 - 8 = 순서대로 입력 시 58 출력)
@@ -29,3 +32,5 @@
 - [ ] 82누르고 %를 누르면 마지막에 1이 나옵니다!
 - [ ] 배경을 조금 밝게 해주시면 좋겠사옵니다
 - [ ] `5-6x9x6-` 마지막 연산자가 toggle되어있는 상태에서 `=`을 누르면 계산이 안되는 이슈
+</div>
+</details>
