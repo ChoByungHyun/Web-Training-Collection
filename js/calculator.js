@@ -15,6 +15,8 @@ function resetColors() {
     btn.style.backgroundColor = "#f69906";
   });
 }
+let saveNum = "";
+//=================================숫자버튼=================================
 numBtns.forEach(function (btn) {
   btn.addEventListener("click", function () {
     if (textArea.textContent == "") {
@@ -46,16 +48,21 @@ numBtns.forEach(function (btn) {
     }
     resetColors();
     lastInput = this.textContent;
-    textArea.textContent += this.textContent;
-    textArea.textContent = comma(uncomma(textArea.textContent));
+
+    saveNum += this.textContent;
+
+    if (this.textContent === ".") {
+      textArea.textContent = saveNum;
+      return;
+    }
+    textArea.textContent = saveNum;
+    textArea.textContent = new Intl.NumberFormat().format(saveNum);
     btnClickCheck = false;
     equalCheck = false;
   });
 });
 function comma(str) {
-  return str.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  //  /(\d)(?=(?!\d|\.)(\d{3})+$)/g; //소수점잘됨 콤마 안됨
-  // /\B(?=(\d{3})+(?!\d))/g; //콤마 잘됨
+  // return (str += new Intl.NumberFormat().format(result));
 }
 function uncomma(str) {
   return str.replace(/[^\d.-/*+x÷]+/g, "");
@@ -70,6 +77,9 @@ document.addEventListener("keydown", function (event) {
 });
 let equalCheck = false;
 let lastNumCheck;
+
+//================================="=" 버튼=================================
+
 equalBtn.addEventListener("click", () => {
   console.log(lastoperatorCheck);
   if (textListArea.textContent === "") {
@@ -84,11 +94,13 @@ equalBtn.addEventListener("click", () => {
     return;
   }
   if (equalCheck) {
-    let expression =
+    let expression = textArea.textContent + lastoperatorCheck + lastNumCheck;
+
+    textListArea.textContent = expression + "=";
+
+    expression =
       uncomma(textArea.textContent) + lastoperatorCheck + lastNumCheck;
 
-    textListArea.textContent = expression + "=";
-
     expression = expression.split(" ").join("");
     // "x"를 "*"로 변환
     expression = expression.replace(/x/g, "*");
@@ -103,15 +115,21 @@ equalBtn.addEventListener("click", () => {
     let result = calculate();
 
     // 출력
+    result = new Intl.NumberFormat().format(parseFloat(result));
+
     textArea.textContent = result;
-    comma(textArea.textContent);
+    // comma(textArea.textContent);
   } else {
     lastNumCheck = textArea.textContent;
-
+    // let listtxtConvert = parseInt(textListArea.textContent);
+    // let AreatxtConvert = parseInt(textArea.textContent);
     // textlistarea에 있는거랑 textarea의 값과 연산하자.
-    let expression =
-      uncomma(textListArea.textContent) + uncomma(textArea.textContent);
+    let expression = textListArea.textContent + textArea.textContent;
+
     textListArea.textContent = expression + "=";
+
+    expression =
+      uncomma(textListArea.textContent) + uncomma(textArea.textContent);
 
     expression = expression.split(" ").join("");
     // "x"를 "*"로 변환
@@ -125,10 +143,10 @@ equalBtn.addEventListener("click", () => {
 
     // 수식을 계산
     let result = calculate();
-
+    result = new Intl.NumberFormat().format(parseFloat(result));
     // 출력
     textArea.textContent = result;
-    textArea.textContent = comma(textArea.textContent);
+    textArea.textContent = textArea.textContent;
   }
 
   lastInput = equalBtn.textContent;
@@ -136,9 +154,12 @@ equalBtn.addEventListener("click", () => {
   expressionList = [];
   btnClickCheck = false;
   equalCheck = true;
+  saveNum = "";
 });
 
 let lastoperatorCheck;
+//=================================operator 버튼=================================
+
 operatorBtns.forEach(function (btn) {
   btn.addEventListener("click", function () {
     if (this.textContent === "=") {
@@ -174,12 +195,14 @@ operatorBtns.forEach(function (btn) {
     }
 
     lastoperatorCheck = lastInput;
-    console.log(lastoperatorCheck);
+    saveNum = "";
+
     expressionList.push(textArea.textContent + this.textContent);
     textListArea.textContent = expressionList.join("").trim();
     textArea.textContent = "";
   });
 });
+//=================================extra 버튼=================================
 
 extraBtns.forEach(function (btn) {
   btn.addEventListener("click", function () {
@@ -190,6 +213,7 @@ extraBtns.forEach(function (btn) {
       textListArea.textContent = "";
       btnClickCheck = false;
       equalCheck = false;
+      saveNum = "";
       if (textArea.textContent === "") {
         // textArea.innerHTML = "&nbsp;";
       }
@@ -202,18 +226,25 @@ extraBtns.forEach(function (btn) {
     }
     if (this.textContent == "+/-") {
       textArea.textContent = uncomma(textArea.textContent) * -1;
-      textArea.textContent = comma(textArea.textContent);
+      textArea.textContent = new Intl.NumberFormat().format(
+        parseFloat(textArea.textContent)
+      );
+      // textArea.textContent = convertNum;
+      // textArea.textContent = textArea.textContent;
       return;
     }
     if (this.textContent == "%") {
-      textArea.textContent = uncomma(textArea.textContent) * 0.01;
-      if (
-        parseInt(textArea.textContent) > 0 &&
-        parseInt(textArea.textContent) > 1000
-      ) {
-        textArea.textContent = comma(textArea.textContent);
+      if (textArea.textContent.includes(",")) {
+        textArea.textContent = uncomma(textArea.textContent) * 0.01;
+        let convertNum2 = new Intl.NumberFormat().format(
+          parseFloat(textArea.textContent)
+        );
+        textArea.textContent = convertNum2;
+        return;
+      } else {
+        textArea.textContent = textArea.textContent * 0.01;
+        return;
       }
-      return;
     }
     if (lastInput !== "" && isNaN(lastInput)) {
       // 마지막 입력된 문자가 연산자인 경우
