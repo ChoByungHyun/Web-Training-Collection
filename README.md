@@ -7,6 +7,8 @@
 
 계산기 url - https://chobyunghyun.github.io/Web-Training-Collection/training/calculator/calculator.html
 
+로또 url - https://chobyunghyun.github.io/Web-Training-Collection/training/lotto/lotto.html
+
 <details>
 <summary>계산기 수정사항 체크리스트.</summary>
 <div markdown="1">
