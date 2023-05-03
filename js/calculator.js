@@ -111,7 +111,6 @@ equalBtn.addEventListener("click", () => {
     // textlistarea에 있는거랑 textarea의 값과 연산하자.
     let expression =
       uncomma(textListArea.textContent) + uncomma(textArea.textContent);
-    console.log(expression);
     textListArea.textContent = expression + "=";
 
     expression = expression.split(" ").join("");
