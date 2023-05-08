@@ -65,7 +65,7 @@ function comma(str) {
   // return (str += new Intl.NumberFormat().format(result));
 }
 function uncomma(str) {
-  return str.replace(/[^\d.-/*+x÷]+/g, "");
+  return str.replace(/[^\d-/*.+x÷]+/g, "");
 }
 
 document.addEventListener("keydown", function (event) {
@@ -94,12 +94,13 @@ equalBtn.addEventListener("click", () => {
     return;
   }
   if (equalCheck) {
-    let expression = textArea.textContent + lastoperatorCheck + lastNumCheck;
+    let expression =
+      uncomma(textArea.textContent) + lastoperatorCheck + lastNumCheck;
 
     textListArea.textContent = expression + "=";
 
-    expression =
-      uncomma(textArea.textContent) + lastoperatorCheck + lastNumCheck;
+    // expression =
+    //   uncomma(textArea.textContent) + lastoperatorCheck + lastNumCheck;
 
     expression = expression.split(" ").join("");
     // "x"를 "*"로 변환
@@ -124,12 +125,14 @@ equalBtn.addEventListener("click", () => {
     // let listtxtConvert = parseInt(textListArea.textContent);
     // let AreatxtConvert = parseInt(textArea.textContent);
     // textlistarea에 있는거랑 textarea의 값과 연산하자.
-    let expression = textListArea.textContent + textArea.textContent;
+    let expression =
+      uncomma(textListArea.textContent) + uncomma(textArea.textContent);
 
     textListArea.textContent = expression + "=";
 
-    expression =
-      uncomma(textListArea.textContent) + uncomma(textArea.textContent);
+    //textlist 수식을 uncomma하기때문에 에러
+    // expression =
+    // uncomma(textListArea.textContent) + uncomma(textArea.textContent);
 
     expression = expression.split(" ").join("");
     // "x"를 "*"로 변환

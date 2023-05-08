@@ -1,0 +1,11 @@
+.buyLotto {
+  display: none;
+  font-size: 18px;
+  line-height: 30px;
+}
+.btn-get-lotto {
+  background-color: bisque;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
