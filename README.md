@@ -10,6 +10,8 @@
 
 로또 url - https://chobyunghyun.github.io/Web-Training-Collection/training/lotto/lotto.html
 
+타이머 url - https://chobyunghyun.github.io/Web-Training-Collection/training/timer/timer.html
+
 <details>
 <summary>계산기 수정사항 체크리스트.</summary>
 <div markdown="1">
