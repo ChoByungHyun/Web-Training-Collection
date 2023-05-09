@@ -9,6 +9,8 @@ class LottoMainScript {
     this.btnClickGetLotto = document.querySelectorAll(".btn-get-lotto");
     this.getLotto = [];
   }
+
+  //리셋.
   lottoReset() {
     console.log(this.getLotto);
     this.getLotto = [];
@@ -23,6 +25,7 @@ class LottoMainScript {
     totalLotto.innerHTML = `총 0개를 구매하였습니다.`;
   }
 
+  //메인.
   lottoScript() {
     //Enter키로 로또 구매.
     this.inputMoney.addEventListener("keydown", () => {

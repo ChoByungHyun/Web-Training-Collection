@@ -22,6 +22,7 @@ class Modal {
 
     this.showResultButton.addEventListener("click", onModalShow);
     this.modalClose.addEventListener("click", onModalClose);
+
     this.btnLottoReset.addEventListener("click", () => {
       onModalClose();
       lottoScript.lottoReset();

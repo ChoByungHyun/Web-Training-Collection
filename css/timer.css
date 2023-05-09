@@ -1,0 +1,81 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  background: linear-gradient(#f0f4ff, #a5b6ee);
+}
+h1 {
+  margin: 0;
+  font-size: 40px;
+  background: url(../assets/img_timer/weniv-logo.svg);
+  background-size: cover;
+
+  width: 244px;
+  height: 48px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+body {
+  margin: 0;
+}
+
+.form-container {
+  margin: 0 auto;
+  background: linear-gradient(#5572bb, #374b7c);
+
+  background-size: cover;
+  width: 400px;
+  height: 360px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+}
+.input-container {
+  display: flex;
+  gap: 22px;
+}
+.lbl-input-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.btn-container {
+  margin-top: 40px;
+}
+
+input {
+  width: 80px;
+  height: 80px;
+  background: url(../assets/img_timer/img_timer/box.svg);
+
+  font-size: 40px;
+  color: white;
+  text-align: center;
+  border-radius: 14px;
+}
+
+label {
+  font-size: 12px;
+}
+
+.btn-start {
+  width: 112px;
+  height: 48px;
+  border-radius: 50px;
+  background-image: url(../assets/img_timer/start-disabled.svg);
+}
+.btn-reset {
+  width: 112px;
+  height: 48px;
+  border-radius: 50px;
+  background-image: url(../assets/img_timer/reset-disabled.svg);
+}
+button {
+  border: none;
+}
