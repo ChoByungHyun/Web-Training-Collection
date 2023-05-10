@@ -58,6 +58,7 @@ input {
   color: white;
   text-align: center;
   border-radius: 14px;
+  border: 1px solid black;
 }
 
 label {

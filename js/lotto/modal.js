@@ -63,7 +63,14 @@ class Modal {
       let stringArr = numArr[i].split(",");
       buyLottoNumbers.push(stringArr.map(Number));
     }
+    win5th.innerHTML = `${five}개`;
+    win4th.innerHTML = `${four}개`;
+    win2nd.innerHTML = `${two}개`;
+    win3rd.innerHTML = `${three}개`;
+    win1st.innerHTML = `${one}개`;
+    lose.innerHTML = `${zero}개`;
 
+    console.log(buyLottoNumbers.length);
     //당첨통계 함수.
     const winRanking = () => {
       for (let i = 0; i < buyLottoNumbers.length; i++) {
@@ -77,19 +84,20 @@ class Modal {
           win5th.innerHTML = `${five}개`;
           count = 0;
         } else if (count === 4) {
+          console.log("?");
+          four++;
+          win4th.innerHTML = `${four}개`;
+          count = 0;
+        } else if (count === 5) {
           if (buyLottoNumbers[i].includes(bonusNum)) {
             two++;
             win2nd.innerHTML = `${two}개`;
             count = 0;
           } else {
-            four++;
-            win4th.innerHTML = `${four}개`;
+            three++;
+            win3rd.innerHTML = `${three}개`;
             count = 0;
           }
-        } else if (count === 5) {
-          three++;
-          win3rd.innerHTML = `${three}개`;
-          count = 0;
         } else if (count === 6) {
           one++;
           win1st.innerHTML = `${one}개`;
