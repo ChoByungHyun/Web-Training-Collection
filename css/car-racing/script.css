@@ -1,0 +1,5 @@
+.car-list-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
