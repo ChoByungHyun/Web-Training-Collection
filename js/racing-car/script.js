@@ -22,6 +22,12 @@ btnCarName.addEventListener("click", () => {
 let racingCount = [];
 
 btnRacingCount.addEventListener("click", () => {
+  racingStart();
+
+  // result.innerHTML = `<div>The winner is ${carNames[racingWinnerIndex].name} !</div>`;
+});
+
+function racingStart() {
   if (racingCountInput.value) {
     racingCount.push(racingCountInput.value);
     racingCountInput.value = "";
@@ -30,14 +36,8 @@ btnRacingCount.addEventListener("click", () => {
   const test = document.createElement("div");
   test.innerHTML = `<div>The winner is ${carNames[racingWinnerIndex].name} !</div>`;
   result.after(test);
-  // result.innerHTML = `<div>The winner is ${carNames[racingWinnerIndex].name} !</div>`;
-});
+}
 
 let racingWinnerIndex = 0;
-
-function racing() {
-  racingWinnerIndex = Math.floor(Math.random() * carNames.length);
-  racingWinner.innerHTML = `<h2>The winner is ${carNames[racingWinnerIndex].name}!</h2>`;
-}
 
 // setInterval(racing, 1000);
