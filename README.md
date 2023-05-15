@@ -12,6 +12,8 @@
 
 타이머 url - https://chobyunghyun.github.io/Web-Training-Collection/training/timer/timer.html
 
+자동차 경주 - https://chobyunghyun.github.io/Web-Training-Collection/training/racing-car/index.html
+
 <details>
 <summary>계산기 수정사항 체크리스트.</summary>
 <div markdown="1">
