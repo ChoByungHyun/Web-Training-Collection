@@ -24,13 +24,30 @@ class LottoMainScript {
     const totalLotto = document.querySelector(".total-lotto");
     totalLotto.innerHTML = `총 0개를 구매하였습니다.`;
   }
+
+  //결과 전 예외처리.
   alertModal() {
     const buyLotto = document.querySelectorAll(".buyLotto");
+    let winnumber = [];
     for (let i = 0; i < this.winNumInput.length; i++) {
+      winnumber.push(this.winNumInput[i].value);
       if (buyLotto.length === 0 || this.winNumInput[i].value === "") {
         alert("로또를 구매하거나 당첨번호를 생성해주세요!");
         return false;
+      } else if (
+        this.winNumInput[i].value > 45 ||
+        this.winNumInput[i].value < 1 ||
+        isNaN(this.winNumInput[i].value)
+      ) {
+        alert("당첨번호를 확인해주세요!");
+        return false;
       }
+    }
+    let temp = new Set(winnumber);
+    let returnWinNum = [...temp];
+    if (returnWinNum.length < 7) {
+      alert("당첨번호가 중복됩니다!");
+      return false;
     }
     return true;
   }
