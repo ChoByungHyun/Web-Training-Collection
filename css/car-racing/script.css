@@ -3,3 +3,10 @@
   flex-direction: column;
   margin-bottom: 15px;
 }
+.car-move-section {
+  display: flex;
+}
+.winner-container,
+.result {
+  display: none;
+}
