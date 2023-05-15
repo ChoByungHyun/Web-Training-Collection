@@ -12,6 +12,10 @@ class Modal {
   }
   modalInit() {
     const onModalShow = () => {
+      let modalCheck = lottoScript.alertModal();
+      if (!modalCheck) {
+        return;
+      }
       this.modal.classList.add("open");
       this.winStatistics();
     };
